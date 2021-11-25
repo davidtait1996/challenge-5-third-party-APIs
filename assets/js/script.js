@@ -4,6 +4,7 @@ var containerEl = $(".container");
 var hoursArr = ["am9", "am10", "am11", "pm12", "pm1", "pm2", "pm3", "pm4", "pm5"];
 var hoursArrReverse = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 var hoursArmyArr = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+var firstClick = [false, false, false, false, false, false, false, false, false]
 
 var currentDay = moment();
 var currentHour = moment().hours();
@@ -52,6 +53,9 @@ var printTable = function() {
 printTable();
 
 $(".row").on("click", ".col-10", function() {
+  var text = $(this).text();
+  console.log(text);
+  $(this).text("");
   var text = $(this).text();
   console.log(text);
 });
