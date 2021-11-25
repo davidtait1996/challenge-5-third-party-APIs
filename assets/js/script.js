@@ -1,13 +1,18 @@
 var containerEl = $(".container");
 
-
 var hoursArr = ["am9", "am10", "am11", "pm12", "pm1", "pm2", "pm3", "pm4", "pm5"];
 var hoursArrReverse = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 var hoursArmyArr = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 var firstClick = [false, false, false, false, false, false, false, false, false]
 
-var currentDay = moment();
+var currentDay = moment().format("YYYY-MM-DD");
 var currentHour = moment().hours();
+
+var currentDayEl = $("<h2>")
+  .addClass("text-center")
+  .text(currentDay);
+
+containerEl.append(currentDayEl);
 
 var printTable = function() {
   for(var i=0; i < hoursArr.length; i++){
@@ -18,7 +23,7 @@ var printTable = function() {
   
     //making just the time part of the orw
     var timeEl = $("<div>")
-      .addClass("col-lg-1 col-2 border-top border-bottom border-start")
+      .addClass("col-lg-1 col-2 border-top border-bottom border-start hour")
       .text(hoursArrReverse[i]);
 
     //making just the task area of the row
@@ -26,16 +31,16 @@ var printTable = function() {
       .addClass("col-lg-10 col-8 border text-center align-middle")
       .text("Task" + i);
     if(currentHour > hoursArmyArr[i]){
-      taskEl.addClass("bg-secondary text-white");
+      taskEl.addClass("past");
     } else if (currentHour === hoursArmyArr[i]) {
-      taskEl.addClass("bg-warning text-white"); 
+      taskEl.addClass("present"); 
     } else {
-      taskEl.addClass("bg-success text-white");
+      taskEl.addClass("future");
     }
 
     //save button area
     var saveEl = $("<div>")
-      .addClass("col-lg-1 col-2 border-top border-bottom bg-info text-center align-middle");
+      .addClass("col-lg-1 col-2 border-top border-bottom bg-info text-center align-middle saveBtn");
     var saveIconEl = $("<i>")
       .addClass("fas fa-save fa-3x");
     saveEl.append(saveIconEl);
@@ -53,8 +58,6 @@ var printTable = function() {
 printTable();
 
 $(".row").on("click", ".col-10", function() {
-  var text = $(this).text();
-  console.log(text);
   $(this).text("");
   var text = $(this).text();
   console.log(text);
