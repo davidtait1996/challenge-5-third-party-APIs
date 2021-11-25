@@ -18,12 +18,12 @@ var printTable = function() {
   
     //making just the time part of the orw
     var timeEl = $("<div>")
-      .addClass("col-1", "border-top", "border-bottom", "border-start")
+      .addClass("col-1 col-xs-2 border-top border-bottom border-start")
       .text(hoursArrReverse[i]);
 
     //making just the task area of the row
     var taskEl = $("<textarea>")
-      .addClass("col-10 border text-center align-middle")
+      .addClass("col-10 col-xs-8 border text-center align-middle")
       .text("Task" + i);
     if(currentHour > hoursArmyArr[i]){
       taskEl.addClass("bg-secondary text-white");
@@ -35,7 +35,7 @@ var printTable = function() {
 
     //save button area
     var saveEl = $("<div>")
-      .addClass("col-1 border-top border-bottom bg-info text-center align-middle");
+      .addClass("col-1 col-xs-2 border-top border-bottom bg-info text-center align-middle");
     var saveIconEl = $("<i>")
       .addClass("fas fa-save fa-3x");
     saveEl.append(saveIconEl);
