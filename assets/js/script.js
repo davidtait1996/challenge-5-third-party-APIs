@@ -45,9 +45,10 @@ var printTable = function() {
 
     //save button area
     var saveEl = $("<div>")
-      .addClass("col-lg-1 col-2 border-top border-bottom bg-info text-center align-middle saveBtn");
+      .addClass("col-lg-1 col-2 border-top border-bottom bg-info text-center align-middle");
     var saveIconEl = $("<i>")
-      .addClass("fas fa-save fa-3x")
+      .addClass("fas fa-save fa-3x mt-2")
+      // .addClass("saveBtn")
       .attr("id", hoursArr[i]);
     saveEl.append(saveIconEl);
 
