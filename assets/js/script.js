@@ -29,7 +29,12 @@ var printTable = function() {
     //making just the task area of the row
     var taskEl = $("<textarea>")
       .addClass("col-lg-10 col-8 border text-center align-middle")
-      .text("Task" + i);
+      .text("Enter a task")
+      .attr("id", hoursArr[i] + "text");
+      if(localStorage.getItem("#"+hoursArr[i]+"text") !== null){
+        var savedTask = localStorage.getItem("#"+hoursArr[i]+"text");
+        taskEl.text(savedTask);
+      }
     if(currentHour > hoursArmyArr[i]){
       taskEl.addClass("past");
     } else if (currentHour === hoursArmyArr[i]) {
@@ -42,7 +47,8 @@ var printTable = function() {
     var saveEl = $("<div>")
       .addClass("col-lg-1 col-2 border-top border-bottom bg-info text-center align-middle saveBtn");
     var saveIconEl = $("<i>")
-      .addClass("fas fa-save fa-3x");
+      .addClass("fas fa-save fa-3x")
+      .attr("id", hoursArr[i]);
     saveEl.append(saveIconEl);
 
 
@@ -57,13 +63,17 @@ var printTable = function() {
 
 printTable();
 
-$(".row").on("click", ".col-10", function() {
-  $(this).text("");
-  var text = $(this).text();
-  console.log(text);
+$(".row").on("click", ".col-lg-10", function() {
+  var element = $(this);
+  var text = element.val();
+  if(text === "Enter a task"){
+    element.val("");
+  }
 });
 
 $(".row").on("click", "i", function() {
-  var text = $(".row", ".col-10").text();
-  console.log(text);
+  var rowID = $(this).attr("id");
+  var text = $("#"+rowID+"text").val();
+
+  localStorage.setItem("#"+rowID+"text", text);
 });
